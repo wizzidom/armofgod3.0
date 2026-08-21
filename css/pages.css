@@ -1,0 +1,158 @@
+/* ============================================================
+   PAGES.CSS — Shared Inner-Page Components
+   Used by: about, charity, gallery, contact
+   ============================================================ */
+
+/* ─── Breadcrumb (shared) ─────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.breadcrumb a:hover { color: white; }
+
+.breadcrumb-sep {
+  font-size: 0.6rem;
+  opacity: 0.45;
+}
+
+.breadcrumb-current {
+  color: rgba(255,255,255,0.85);
+}
+
+/* ─── Page Hero Content (shared) ─────────────────────────── */
+.page-hero-content,
+.gallery-hero-content,
+.charity-hero-content,
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+  padding-inline: var(--container-pad);
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.page-hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: pageHeroIn 0.8s ease 0.3s forwards;
+}
+
+.page-hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255,255,255,0.72);
+  max-width: 560px;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: pageHeroIn 0.8s ease 0.5s forwards;
+}
+
+.breadcrumb {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: pageHeroIn 0.7s ease 0.15s forwards;
+}
+
+@keyframes pageHeroIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── CTA Section (shared across all pages) ──────────────── */
+.cta-section {
+  background: var(--sky-gradient);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 7rem var(--container-pad);
+}
+
+.cta-bg-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-bg-shape-1 {
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+}
+
+.cta-bg-shape-2 {
+  bottom: -120px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.cta-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  line-height: 1.1;
+}
+
+.cta-subtitle {
+  font-size: var(--text-md);
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Section heading (gradient span) shared ─────────────── */
+.section-heading span {
+  background: var(--sky-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page-hero-title   { font-size: clamp(2rem, 10vw, 3rem); }
+  .cta-title         { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+  .cta-actions       { flex-direction: column; align-items: center; }
+  .cta-actions .btn  { width: 100%; justify-content: center; }
+}

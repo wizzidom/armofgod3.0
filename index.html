@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arm of God Ministries — A place where faith grows, lives are transformed, and communities are strengthened through Jesus Christ." />
+  <meta name="keywords" content="church, ministry, faith, worship, community, outreach, Arm of God" />
+  <meta property="og:title" content="Arm of God Ministries" />
+  <meta property="og:description" content="A place where faith grows, lives are transformed." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1A6FBF" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <title>Arm of God Ministries — Welcome Home</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/live.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav id="navbar" class="nav-transparent" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Arm of God Ministries Home">
+      <div><img src="logo.png" width="80%" alt=""></i></div>
+ 
+    </a>
+
+    <ul class="nav-links nav-desktop" role="list">
+      <li><a href="index.html"         class="nav-link active">Home</a></li>
+      <li><a href="pages/about.html"   class="nav-link">About Us</a></li>
+      <li><a href="pages/charity.html" class="nav-link">Charity</a></li>
+      <li><a href="pages/gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+      <li>
+        <a href="pages/live.html" class="nav-link nav-link--live" id="navWatchLive" aria-label="Watch Live">
+          <span class="nav-live-dot" id="navLiveDot" aria-hidden="true"></span>
+          <span id="navLiveText">Watch Live</span>
+        </a>
+      </li>
+    </ul>
+
+    <a href="pages/contact.html" class="btn btn-primary nav-cta nav-desktop">
+      Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-drawer" id="navDrawer" role="dialog" aria-label="Mobile navigation">
+  <div class="nav-drawer-links">
+    <a href="index.html"         class="nav-drawer-link active">Home <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="pages/about.html"   class="nav-drawer-link">About Us <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="pages/charity.html" class="nav-drawer-link">Charity <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="pages/gallery.html" class="nav-drawer-link">Gallery <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="pages/contact.html" class="nav-drawer-link">Contact <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="pages/live.html"    class="nav-drawer-link nav-drawer-link--live" id="navDrawerWatchLive">
+      <span>
+        <span class="nav-live-dot nav-live-dot--drawer" id="navDrawerLiveDot" aria-hidden="true"></span>
+        <span id="navDrawerLiveText">Watch Live</span>
+      </span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+  <div class="nav-drawer-cta">
+    <a href="pages/contact.html" class="btn btn-primary">Plan Your Visit</a>
+    <a href="pages/contact.html" class="btn btn-ghost">Contact Us</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="hero-bg">
+<!-- <video
+    autoplay
+    muted
+    fetchpriority="high"
+    loop
+    playsinline
+    style="width:100vw; height:100vh; object-fit:cover;">
+    <source src="vid" type="video/mp4">
+</video> -->
+    <img
+      src="https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=1920&q=80"
+      alt="Church worship gathering"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- Floating Particles -->
+  <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <i class="fa-solid fa-fire"></i>
+        Serving the community since 2021
+      </div>
+      <h1 class="hero-title">
+        Welcome
+        <span class="accent-line">Home</span>
+      </h1>
+      <p class="hero-subtitle">
+        A place where faith grows, lives are transformed, and communities
+        are strengthened through Jesus Christ.
+      </p>
+      <div class="hero-actions">
+        <a href="pages/contact.html" class="btn btn-primary btn-xl">
+          Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i>
+        </a>
+        <a href="pages/contact.html" class="btn btn-secondary btn-xl">
+          Contact Us <i class="fa-solid fa-phone"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll" id="heroScroll" aria-label="Scroll down">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+
+  <!-- Stat Bar -->
+  <!-- <div class="hero-stats" aria-label="Church statistics">
+    <div class="hero-stats-inner">
+      <div class="hero-stat">
+        <div>
+          <div class="hero-stat-number">25+</div>
+          <div class="hero-stat-label">Years of Ministry</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div>
+          <div class="hero-stat-number">2,000+</div>
+          <div class="hero-stat-label">Lives Impacted</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div>
+          <div class="hero-stat-number">500+</div>
+          <div class="hero-stat-label">Families Served</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div>
+          <div class="hero-stat-number">12</div>
+          <div class="hero-stat-label">Community Projects</div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT PREVIEW
+═══════════════════════════════════════════════ -->
+<section class="about-preview section section--lg" id="about-preview">
+  <div class="container">
+    <div class="about-split">
+      <!-- Media -->
+      <div class="about-media" data-aos="fade-right" data-aos-duration="900">
+        <img
+          src="16.jpeg"
+          alt="Church community gathering"
+          class="about-img-main"
+          loading="lazy"
+        />
+        <img
+          src="02.jpg"
+          alt="Worship service"
+          class="about-img-accent"
+          loading="lazy"
+        />
+        <div class="about-badge-float">
+          <div class="icon-box icon-box--blue-solid">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="about-badge-float-text">
+            <span class="about-badge-float-num"></span>
+            <span class="about-badge-float-label">Church Family</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-content" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-heading">
+          More Than a Church —<br/>
+          <span>A Family in Faith</span>
+        </h2>
+        <p class="lead mb-xl">
+          Founded in 2021,  Apostolic Revival Mission —
+          was born of God by the Spirit of God. After many years of serving God through other
+          ministries, God called the man of God out for a special assignment:
+          to lead God's people back to Him through the teaching of Jesus Christ.
+        </p>
+
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="fa-solid fa-book-open"></i></div>
+            <div class="about-feature-text">
+              <h5>Holiness is Our Focus</h5>
+              <p>Without holiness no one will see God. We are called to restore the fear of God into the hearts of His people (Hebrews 12:14).</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="fa-solid fa-tv"></i></div>
+            <div class="about-feature-text">
+              <h5>ARM OF GOD TV</h5>
+              <p>Our messages are broadcast on YouTube and Facebook, reaching millions across Pretoria and around the world.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+            <div class="about-feature-text">
+              <h5>Love &amp; Be Love Outreach (LBOI)</h5>
+              <p>Our charity arm actively serves communities in Pretoria's inner city and beyond, bringing hope to the less privileged.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="pages/about.html" class="btn btn-primary btn-lg">
+          Learn Our Story <i class="fa-solid fa-arrow-right btn-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CHURCH VALUES
+═══════════════════════════════════════════════ -->
+<section class="values-section section" id="values">
+  <div class="values-bg-shape" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-header section-header--center" data-aos="fade-up">
+      <div class="section-label">What We Stand For</div>
+      <h2 class="section-heading">Our Core <span>Values</span></h2>
+      <p class="section-subheading">
+        Six foundational pillars that shape everything we do — from Sunday
+        worship to weekday outreach.
+      </p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="value-icon"><i class="fa-solid fa-bible"></i></div>
+        <h4>Scripture First</h4>
+        <p>The Bible is our ultimate authority. Every decision, teaching, and action is rooted in the living Word of God.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="value-icon"><i class="fa-solid fa-pray"></i></div>
+        <h4>Passionate Worship</h4>
+        <p>We pursue the presence of God with wholehearted worship in spirit and in truth, every single day.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="value-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h4>Authentic Community</h4>
+        <p>We believe in life lived together. Real relationships, real growth, and real accountability in Christ.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="value-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+        <h4>Sacrificial Service</h4>
+        <p>Following Jesus means serving others. We pour ourselves out for our city, our neighbors, and the world.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="320">
+        <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
+        <h4>Global Mission</h4>
+        <p>The Great Commission sends us beyond our walls. We are committed to making disciples of all nations.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="value-icon"><i class="fa-solid fa-seedling"></i></div>
+        <h4>Lifelong Growth</h4>
+        <p>We are all on a journey. We create spaces for spiritual growth through discipleship, teaching, and mentorship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CHARITY PREVIEW
+═══════════════════════════════════════════════ -->
+<section class="charity-preview section--lg" id="charity-preview">
+  <div class="charity-bg-img" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=70" alt="" loading="lazy" />
+  </div>
+  <div class="charity-overlay-gradient" aria-hidden="true"></div>
+  <div class="container charity-content">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-label section-label--white">Making a Difference</div>
+      <h2 class="section-heading section-heading--white">
+        Our Outreach &amp;<br/><span style="background:linear-gradient(135deg,#60B4FF,#A8D8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Community Impact</span>
+      </h2>
+      <p class="section-subheading section-subheading--white" style="max-width:560px;">
+        Faith without works is dead. We actively serve our community through
+        multiple outreach programs, bringing hope to the most vulnerable.
+      </p>
+    </div>
+
+    <div class="charity-cards">
+      <div class="charity-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="charity-card-icon"><i class="fa-solid fa-utensils"></i></div>
+        <h4>Food Assistance</h4>
+        <p>Food distributions serving families in our local community.</p>
+      </div>
+     
+      <div class="charity-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="charity-card-icon"><i class="fa-solid fa-child-reaching"></i></div>
+        <h4>Youth Development</h4>
+        <p>Mentorship, sports, arts, and life skills programs transforming young lives.</p>
+      </div>
+      <div class="charity-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="charity-card-icon"><i class="fa-solid fa-earth-africa"></i></div>
+        <h4>Mission Projects</h4>
+        <p>Supporting missionaries and communities across Africa.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;" data-aos="fade-up" data-aos-delay="100">
+      <a href="pages/charity.html" class="btn btn-primary btn-xl">
+        See Our Impact <i class="fa-solid fa-arrow-right btn-arrow"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GALLERY PREVIEW
+═══════════════════════════════════════════════ -->
+<section class="gallery-preview section" id="gallery-preview">
+  <div class="container">
+    <div class="section-header section-header--center" data-aos="fade-up">
+      <div class="section-label">Church Life</div>
+      <h2 class="section-heading">Moments of <span>Community &amp; Worship</span></h2>
+      <p class="section-subheading">
+        A glimpse into the vibrant life of our church — worship services,
+        community events, and outreach in action.
+      </p>
+    </div>
+
+    <div class="gallery-masonry-preview">
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="0">
+        <img src="04.jpg" alt="Worship service" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Worship</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="80">
+        <img src="13.jpeg" alt="Sunday service" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Sunday Service</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="160">
+        <img src="14.jpg" alt="Community outreach" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Outreach</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="240">
+        <img src="15.jpg" alt="Youth program" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Youth</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="80">
+        <img src="17.jpeg" alt="Community gathering" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Community</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="160">
+        <img src="18.jpeg" alt="Special event" loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Events</span>
+        </div>
+        <div class="gallery-zoom"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;" data-aos="fade-up">
+      <a href="pages/gallery.html" class="btn btn-outline btn-lg">
+        View Full Gallery <i class="fa-solid fa-images btn-arrow"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTURE FEATURE
+═══════════════════════════════════════════════ -->
+<section class="scripture-section" id="scripture" aria-label="Featured Scripture">
+  <div class="scripture-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=70" alt="" loading="lazy" />
+  </div>
+  <div class="scripture-overlay" aria-hidden="true"></div>
+  <div class="scripture-content" data-aos="fade-up" data-aos-duration="1000">
+    <span class="scripture-quote-mark" aria-hidden="true">"</span>
+    <blockquote>
+      <p class="scripture-verse">
+        For I know the plans I have for you, declares the Lord — plans to prosper
+        you and not to harm you, plans to give you hope and a future.
+      </p>
+      <footer class="scripture-ref">
+        <span>Jeremiah 29:11</span>
+      </footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════ -->
+
+
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════════ -->
+</main><!-- /main-content -->
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-wave" aria-hidden="true"></div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">
+
+        <div class="footer-logo-text">
+    <img src="../logo.png" width="80%" alt="">
+        </div>
+      </a>
+      <p class="footer-tagline">A place where faith grows, lives are transformed, and communities are strengthened through Jesus Christ.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/amrofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon twitter" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://tiktok.com/@armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Quick Links</h3>
+      <nav class="footer-links">
+        <a href="../index.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a>
+        <a href="about.html"    class="footer-link"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+        <a href="charity.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Charity</a>
+        <a href="gallery.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Gallery</a>
+        <a href="contact.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Service Times</h3>
+      <div class="service-times">
+        <div class="service-time-item"><span class="service-time-day">Saturday</span><span class="service-time-name">House Fellowship</span><span class="service-time-hour">3:00 PM</span></div>
+           </div>
+    </div>
+    <div class="footer-newsletter">
+      <h3 class="footer-col-title">Stay Connected</h3>
+      <p>Subscribe to receive weekly sermons, events, and encouragement.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email" />
+        <button type="submit" class="newsletter-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <div class="footer-contact-items" style="margin-top:1.5rem;">
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Eersterust, Kuvukuland Informal Settlement, Pretoria</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+27 61 536 9749</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>info@armofgod.tv</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-bottom-text">&copy; 2026 Arm of God Ministries. All rights reserved. Website by <a href="https://wizzidom.co.za" style="color:rgba(255,255,255,0.5);">Wizzidom Solutions</a></p>
+    <nav class="footer-bottom-links">
+      <a href="#" class="footer-bottom-link">Privacy Policy</a>
+      <a href="#" class="footer-bottom-link">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ─── Scripts ──────────────────────────────────────────── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+<script src="js/live.js"></script>
+</body>
+</html>

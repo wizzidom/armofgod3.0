@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arm of God Ministries Gallery — worship services, community events, youth programs, and outreach in pictures." />
+  <meta name="theme-color" content="#1A6FBF" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Gallery — Arm of God Ministries</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/gallery.css" />
+  <link rel="stylesheet" href="../css/live.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="nav-solid" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Arm of God Ministries Home">
+      <div><img src="../logo.png" width="80%" alt=""></i></div>
+ 
+    </a>
+    <ul class="nav-links nav-desktop" role="list">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html"    class="nav-link">About Us</a></li>
+      <li><a href="charity.html"  class="nav-link">Charity</a></li>
+      <li><a href="gallery.html"  class="nav-link active">Gallery</a></li>
+      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li>
+        <a href="live.html" class="nav-link nav-link--live" id="navWatchLive" aria-label="Watch Live">
+          <span class="nav-live-dot" id="navLiveDot" aria-hidden="true"></span>
+          <span id="navLiveText">Watch Live</span>
+        </a>
+      </li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta nav-desktop">
+      Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-links">
+    <a href="../index.html" class="nav-drawer-link">Home <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="about.html"    class="nav-drawer-link">About Us <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="charity.html"  class="nav-drawer-link">Charity <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="gallery.html"  class="nav-drawer-link active">Gallery <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="contact.html"  class="nav-drawer-link">Contact <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="live.html"     class="nav-drawer-link nav-drawer-link--live" id="navDrawerWatchLive">
+      <span>
+        <span class="nav-live-dot nav-live-dot--drawer" id="navDrawerLiveDot" aria-hidden="true"></span>
+        <span id="navDrawerLiveText">Watch Live</span>
+      </span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+  <div class="nav-drawer-cta">
+    <a href="contact.html" class="btn btn-primary">Plan Your Visit</a>
+    <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- GALLERY HERO -->
+<section class="gallery-hero loaded" aria-label="Gallery hero">
+  <div class="gallery-hero-bg">
+    <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=1920&q=80" alt="Church worship" loading="eager" fetchpriority="high" />
+  </div>
+  <div class="gallery-hero-overlay"></div>
+  <div class="gallery-hero-content" data-aos="fade-up" data-aos-duration="800">
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">Gallery</span>
+    </div>
+    <h1 class="page-hero-title">Life at <span style="background:linear-gradient(135deg,#60B4FF,#A8D8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Apostolic Revival Mission</span></h1>
+    <p class="page-hero-subtitle">
+      A visual story of worship, community, outreach, and the lives being
+      transformed by the power of faith and togetherness.
+    </p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<!-- <div class="gallery-filter-bar" id="galleryFilterBar" role="navigation" aria-label="Gallery filters">
+  <div class="gallery-filter-inner">
+    <div class="filter-tabs" role="tablist" aria-label="Gallery categories">
+      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+        <i class="fa-solid fa-border-all"></i> All
+      </button>
+      <button class="filter-tab" data-filter="worship" role="tab" aria-selected="false">
+        <i class="fa-solid fa-music"></i> Worship
+      </button>
+      <button class="filter-tab" data-filter="sunday" role="tab" aria-selected="false">
+        <i class="fa-solid fa-church"></i> Sunday Services
+      </button>
+      <button class="filter-tab" data-filter="community" role="tab" aria-selected="false">
+        <i class="fa-solid fa-people-group"></i> Community
+      </button>
+      <button class="filter-tab" data-filter="youth" role="tab" aria-selected="false">
+        <i class="fa-solid fa-child-reaching"></i> Youth
+      </button>
+      <button class="filter-tab" data-filter="outreach" role="tab" aria-selected="false">
+        <i class="fa-solid fa-hands-holding-heart"></i> Outreach
+      </button>
+      <button class="filter-tab" data-filter="conferences" role="tab" aria-selected="false">
+        <i class="fa-solid fa-microphone-lines"></i> Conferences
+      </button>
+    </div>
+    <div class="gallery-search" role="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" class="gallery-search-input" id="gallerySearch" placeholder="Search photos…" aria-label="Search gallery" />
+    </div>
+  </div>
+</div> -->
+
+<!-- GALLERY MAIN -->
+<section class="gallery-main" aria-label="Photo gallery">
+  <div class="gallery-container">
+
+    <div class="gallery-meta">
+      <p class="gallery-count">Showing <strong id="galleryCountNum">24</strong> photos</p>
+      <div class="gallery-view-toggle" aria-label="View options">
+        <button class="view-btn active" data-cols="4" aria-label="4 column view" title="4 columns"><i class="fa-solid fa-grip"></i></button>
+        <button class="view-btn" data-cols="3" aria-label="3 column view" title="3 columns"><i class="fa-solid fa-table-cells-large"></i></button>
+        <button class="view-btn" data-cols="2" aria-label="2 column view" title="2 columns"><i class="fa-solid fa-table-columns"></i></button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid" role="list">
+
+      <!-- Worship -->
+      <a href="../10.jpeg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="worship"
+         data-glightbox="title: Sunday Worship; description: Our congregation in passionate worship"
+         role="listitem" aria-label="Sunday Worship photo">
+        <img src="../10.jpeg" alt="Sunday Worship" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Worship</div>
+            <div class="gallery-card-title">Sunday Morning Worship</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../6.jpg"
+         class="gallery-card gallery-card--square glightbox"
+         data-category="worship"
+         data-glightbox="title: Praise and Worship; description: Spirit-filled evening of praise"
+         role="listitem" aria-label="Praise and Worship photo">
+        <img src="../6.jpg" alt="Praise and Worship" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Worship</div>
+            <div class="gallery-card-title">Evening Praise Night</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- Sunday Services -->
+      <a href="../11.jpeg"
+         class="gallery-card gallery-card--wide glightbox"
+         data-category="sunday"
+         data-glightbox="title: Sunday Service; description: The congregation gathered for morning service"
+         role="listitem" aria-label="Sunday Service photo">
+        <img src="../11.jpeg" alt="Sunday Service" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Sunday Services</div>
+            <div class="gallery-card-title">Morning Service</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../12.jpeg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="sunday"
+         data-glightbox="title: Sunday Evening; description: Evening service in full swing"
+         role="listitem" aria-label="Sunday Evening Service photo">
+        <img src="../12.jpeg" alt="Sunday Evening" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Sunday Services</div>
+            <div class="gallery-card-title">Evening Service</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- Community -->
+      <a href="../13.jpeg"
+         class="gallery-card gallery-card--short glightbox"
+         data-category="community"
+         data-glightbox="title: Community Gathering; description: Our church family together"
+         role="listitem" aria-label="Community Gathering photo">
+        <img src="../13.jpeg" alt="Community Gathering" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Community</div>
+            <div class="gallery-card-title">Church Family Day</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../14.jpg"
+         class="gallery-card gallery-card--square glightbox"
+         data-category="community"
+         data-glightbox="title: Small Groups; description: Life groups meeting midweek"
+         role="listitem" aria-label="Small Groups photo">
+        <img src="../14.jpg" alt="Small Groups" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Community</div>
+            <div class="gallery-card-title">Life Groups</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- Youth -->
+      <a href="../15.jpg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="youth"
+         data-glightbox="title: Youth Night; description: Friday Night Youth Programme"
+         role="listitem" aria-label="Youth Night photo">
+        <img src="../15.jpg" alt="Youth Night" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Youth</div>
+            <div class="gallery-card-title">Friday Youth Night</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../16.jpeg"
+         class="gallery-card gallery-card--wide glightbox"
+         data-category="youth"
+         data-glightbox="title: Youth Education; description: Mentorship and learning programmes"
+         role="listitem" aria-label="Youth Education photo">
+        <img src="../16.jpeg" alt="Youth Education" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Youth</div>
+            <div class="gallery-card-title">Youth Education Programme</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- Outreach -->
+      <a href="../17.jpeg"
+         class="gallery-card gallery-card--square glightbox"
+         data-category="outreach"
+         data-glightbox="title: Community Outreach; description: Serving the community with love"
+         role="listitem" aria-label="Community Outreach photo">
+        <img src="../17.jpeg" alt="Community Outreach" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Outreach</div>
+            <div class="gallery-card-title">Community Service Day</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../18.jpeg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="outreach"
+         data-glightbox="title: Food Distribution; description: Weekly food bank in action"
+         role="listitem" aria-label="Food Distribution photo">
+        <img src="../18.jpeg" alt="Food Distribution" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Outreach</div>
+            <div class="gallery-card-title">Community Food Bank</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../19.jpeg"
+         class="gallery-card gallery-card--short glightbox"
+         data-category="outreach"
+         data-glightbox="title: Mission Trip; description: Annual international mission project"
+         role="listitem" aria-label="Mission Trip photo">
+        <img src="../19.jpeg" alt="Mission Trip" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Outreach</div>
+            <div class="gallery-card-title">Kenya Mission Trip 2024</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- Conferences -->
+      <a href="../20.jpeg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="conferences"
+         data-glightbox="title: Annual Conference; description: Kingdom Impact Conference 2024"
+         role="listitem" aria-label="Annual Conference photo">
+        <img src="../20.jpeg" alt="Annual Conference" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Conferences</div>
+            <div class="gallery-card-title">Kingdom Impact Conference</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../21.jpeg"
+         class="gallery-card gallery-card--wide glightbox"
+         data-category="conferences"
+         data-glightbox="title: Leadership Summit; description: Annual leaders gathering"
+         role="listitem" aria-label="Leadership Summit photo">
+        <img src="../21.jpeg" alt="Leadership Summit" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Conferences</div>
+            <div class="gallery-card-title">Leadership Summit 2024</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <!-- More photos — 2nd round -->
+      <a href="../22.jpeg"
+         class="gallery-card gallery-card--square glightbox"
+         data-category="worship"
+         data-glightbox="title: Worship Band; description: Our talented worship team"
+         role="listitem" aria-label="Worship Band photo">
+        <img src="../22.jpeg" alt="Worship Band" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Worship</div>
+            <div class="gallery-card-title">Worship Team</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+      <a href="../23.jpeg"
+         class="gallery-card gallery-card--tall glightbox"
+         data-category="sunday"
+         data-glightbox="title: Baptism Sunday; description: Celebrating new believers"
+         role="listitem" aria-label="Baptism Sunday photo">
+        <img src="../23.jpeg" alt="Baptism Sunday" loading="lazy" />
+        <div class="gallery-card-overlay">
+          <div class="gallery-card-info">
+            <div class="gallery-card-cat">Sunday Services</div>
+            <div class="gallery-card-title">Baptism Celebration</div>
+          </div>
+        </div>
+        <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </a>
+
+    
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" aria-label="Share your photos CTA">
+  <div class="cta-bg-shape cta-bg-shape-1" aria-hidden="true"></div>
+  <div class="cta-bg-shape cta-bg-shape-2" aria-hidden="true"></div>
+  <div class="cta-content" data-aos="fade-up">
+    <div class="section-label section-label--white" style="justify-content:center;">Be Part of the Story</div>
+    <h2 class="cta-title">You Belong in<br/>These Pictures</h2>
+    <p class="cta-subtitle">
+      The best memories are made together. Join us this Sunday and become
+      part of the Arm of God Ministries family.
+    </p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-red btn-xl">Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i></a>
+      <a href="contact.html" class="btn btn-secondary btn-xl">Get In Touch <i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-wave" aria-hidden="true"></div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">
+
+        <div class="footer-logo-text">
+    <img src="../logo.png" width="80%" alt="">
+        </div>
+      </a>
+      <p class="footer-tagline">A place where faith grows, lives are transformed, and communities are strengthened through Jesus Christ.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/amrofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon twitter" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://tiktok.com/@armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Quick Links</h3>
+      <nav class="footer-links">
+        <a href="../index.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a>
+        <a href="about.html"    class="footer-link"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+        <a href="charity.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Charity</a>
+        <a href="gallery.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Gallery</a>
+        <a href="contact.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Service Times</h3>
+      <div class="service-times">
+        <div class="service-time-item"><span class="service-time-day">Saturday</span><span class="service-time-name">House Fellowship</span><span class="service-time-hour">3:00 PM</span></div>
+           </div>
+    </div>
+    <div class="footer-newsletter">
+      <h3 class="footer-col-title">Stay Connected</h3>
+      <p>Subscribe to receive weekly sermons, events, and encouragement.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email" />
+        <button type="submit" class="newsletter-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <div class="footer-contact-items" style="margin-top:1.5rem;">
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Eersterust, Kuvukuland Informal Settlement, Pretoria</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+27 61 536 9749</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>info@armofgod.tv</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-bottom-text">&copy; 2026 Arm of God Ministries. All rights reserved. Website by <a href="https://wizzidom.co.za" style="color:rgba(255,255,255,0.5);">Wizzidom Solutions</a></p>
+    <nav class="footer-bottom-links">
+      <a href="#" class="footer-bottom-link">Privacy Policy</a>
+      <a href="#" class="footer-bottom-link">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/gallery.js"></script>
+<script src="../js/live.js"></script>
+</body>
+</html>

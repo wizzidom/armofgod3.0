@@ -1,0 +1,523 @@
+/* ============================================================
+   ARM OF GOD MINISTRIES — WATCH LIVE PAGE STYLES
+   File: css/live.css
+   ============================================================ */
+
+/* ─── Navbar Live Indicator ───────────────────────────────── */
+
+/* The red dot next to the Watch Live text */
+.nav-live-dot {
+  display: inline-block;
+  width:  8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background var(--transition-base);
+}
+
+/* Dot visible only when LIVE */
+.nav-live-dot--active {
+  background: var(--fire-red);
+  box-shadow: 0 0 0 0 rgba(232, 52, 42, 0.6);
+  animation: navDotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes navDotPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(232, 52, 42, 0.6); }
+  60%  { box-shadow: 0 0 0 7px rgba(232, 52, 42, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(232, 52, 42, 0);   }
+}
+
+/* Desktop nav link: LIVE state */
+.nav-link--live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link--is-live {
+  color: var(--fire-red) !important;
+  background: rgba(232, 52, 42, 0.08) !important;
+  font-weight: 700 !important;
+}
+
+.nav-scrolled .nav-link--is-live,
+.nav-solid    .nav-link--is-live {
+  color: var(--fire-red) !important;
+  background: rgba(232, 52, 42, 0.08) !important;
+}
+
+.nav-transparent .nav-link--is-live {
+  color: #FF6B6B !important;
+  background: rgba(232, 52, 42, 0.15) !important;
+}
+
+/* Mobile drawer: LIVE state */
+.nav-live-dot--drawer {
+  display: inline-block;
+  width:  8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  margin-right: 6px;
+  transition: background var(--transition-base);
+  vertical-align: middle;
+}
+
+.nav-live-dot--drawer.nav-live-dot--active {
+  background: var(--fire-red);
+  animation: navDotPulse 1.8s ease-in-out infinite;
+}
+
+.nav-drawer-link--live {
+  display: flex;
+  align-items: center;
+}
+
+.nav-drawer-link--is-live {
+  color: var(--fire-red) !important;
+  background: rgba(232, 52, 42, 0.08) !important;
+  border-color: rgba(232, 52, 42, 0.15) !important;
+  font-weight: 700 !important;
+}
+
+/* ─── Loading Spinner ─────────────────────────────────────── */
+.live-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4rem, 10vw, 7rem) 0;
+  gap: 1.5rem;
+}
+
+.live-spinner {
+  width: 52px;
+  height: 52px;
+  position: relative;
+}
+
+.spinner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--light-grey);
+  border-top-color: var(--sky-blue);
+  animation: spinnerSpin 0.9s linear infinite;
+}
+
+@keyframes spinnerSpin {
+  to { transform: rotate(360deg); }
+}
+
+.live-loading-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ─── Live Stream Section ─────────────────────────────────── */
+.live-section {
+  background: var(--off-white);
+}
+
+/* ─── Live Badge (large, on the page) ────────────────────── */
+.live-stream-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.live-badge-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  background: rgba(232, 52, 42, 0.1);
+  border: 1.5px solid rgba(232, 52, 42, 0.25);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.live-pulse-ring {
+  position: absolute;
+  left: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fire-red);
+  opacity: 0.35;
+  animation: liveRingExpand 1.8s ease-out infinite;
+}
+
+@keyframes liveRingExpand {
+  0%   { transform: scale(1);   opacity: 0.35; }
+  100% { transform: scale(2.8); opacity: 0;    }
+}
+
+.live-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fire-red);
+  flex-shrink: 0;
+  animation: liveDotBlink 1.8s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes liveDotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+.live-badge-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--fire-red);
+  text-transform: uppercase;
+}
+
+.live-stream-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.6rem;
+}
+
+.live-stream-desc {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+/* ─── Responsive Player ───────────────────────────────────── */
+.live-player-outer {
+  max-width: 960px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}
+
+.live-player-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--charcoal);
+  box-shadow: var(--shadow-xl);
+}
+
+.live-player-ratio iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-xl);
+}
+
+/* ─── Live Action Buttons ─────────────────────────────────── */
+.live-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* ─── Not-Live Header ─────────────────────────────────────── */
+.not-live-header {
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.not-live-subscribe {
+  margin-top: 1.5rem;
+}
+
+/* ─── Videos Grid ─────────────────────────────────────────── */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 960px) {
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* ─── Video Card ──────────────────────────────────────────── */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-base);
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(26, 111, 191, 0.15);
+}
+
+.video-card-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background: var(--charcoal);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.video-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover .video-card-thumb img {
+  transform: scale(1.04);
+}
+
+/* Play button overlay */
+.video-card-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.video-card:hover .video-card-play {
+  opacity: 1;
+}
+
+.video-card-play i {
+  font-size: 2.5rem;
+  color: var(--white);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform var(--transition-spring);
+}
+
+.video-card:hover .video-card-play i {
+  transform: scale(1.15);
+}
+
+.video-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.video-card-title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.video-card-date {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ─── Videos Loading ──────────────────────────────────────── */
+.videos-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 1.25rem;
+}
+
+/* ─── Videos Error ────────────────────────────────────────── */
+.videos-error {
+  text-align: center;
+  padding: clamp(3rem, 8vw, 5rem) 1rem;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.videos-error-icon {
+  font-size: 3.5rem;
+  color: var(--fire-red);
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+}
+
+.videos-error h3 {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.75rem;
+}
+
+.videos-error p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Videos More Button ──────────────────────────────────── */
+.videos-more {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+/* ─── API Error State ─────────────────────────────────────── */
+.live-api-error {
+  text-align: center;
+  padding: clamp(4rem, 10vw, 7rem) 1rem;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.live-api-error-icon {
+  font-size: 4rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.live-api-error h3 {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.75rem;
+}
+
+.live-api-error p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 420px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}
+
+.live-api-error-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ─── Channel Strip ───────────────────────────────────────── */
+.live-channel-strip {
+  background: var(--white);
+  border-top: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.channel-strip-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.channel-strip-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 0, 0, 0.08);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #FF0000;
+  flex-shrink: 0;
+}
+
+.channel-strip-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.channel-strip-text h3 {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.25rem;
+}
+
+.channel-strip-text p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.channel-strip-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .channel-strip-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .channel-strip-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .live-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .live-actions .btn {
+    justify-content: center;
+  }
+}
+
+/* ─── CTA Section overrides (inherited from pages.css) ───── */
+.live-section .cta-section {
+  margin-top: 0;
+}

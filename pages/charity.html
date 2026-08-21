@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arm of God Ministries Charity — community outreach, food assistance, youth programs, and global missions serving thousands of families." />
+  <meta name="theme-color" content="#1A6FBF" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Charity &amp; Outreach — Arm of God Ministries</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/charity.css" />
+  <link rel="stylesheet" href="../css/live.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="nav-solid" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Arm of God Ministries Home">
+      <div><img src="../logo.png" width="80%" alt=""></i></div>
+ 
+    </a>
+    <ul class="nav-links nav-desktop" role="list">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html"    class="nav-link">About Us</a></li>
+      <li><a href="charity.html"  class="nav-link active">Charity</a></li>
+      <li><a href="gallery.html"  class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"  class="nav-link">Contact</a></li>
+      <li>
+        <a href="live.html" class="nav-link nav-link--live" id="navWatchLive" aria-label="Watch Live">
+          <span class="nav-live-dot" id="navLiveDot" aria-hidden="true"></span>
+          <span id="navLiveText">Watch Live</span>
+        </a>
+      </li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta nav-desktop">
+      Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-links">
+    <a href="../index.html" class="nav-drawer-link">Home <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="about.html"    class="nav-drawer-link">About Us <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="charity.html"  class="nav-drawer-link active">Charity <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="gallery.html"  class="nav-drawer-link">Gallery <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="contact.html"  class="nav-drawer-link">Contact <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="live.html"     class="nav-drawer-link nav-drawer-link--live" id="navDrawerWatchLive">
+      <span>
+        <span class="nav-live-dot nav-live-dot--drawer" id="navDrawerLiveDot" aria-hidden="true"></span>
+        <span id="navDrawerLiveText">Watch Live</span>
+      </span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+  <div class="nav-drawer-cta">
+    <a href="contact.html" class="btn btn-primary">Plan Your Visit</a>
+    <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="charity-hero loaded" aria-label="Charity page hero">
+  <div class="charity-hero-bg">
+    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80" alt="Community outreach" loading="eager" fetchpriority="high" />
+  </div>
+  <div class="charity-hero-overlay"></div>
+  <div class="charity-hero-content" data-aos="fade-up" data-aos-duration="800">
+    <div class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">Charity &amp; Outreach</span>
+    </div>
+    <h1 class="page-hero-title">Faith In <span style="color:#FF8A80;">Action</span></h1>
+    <p class="page-hero-subtitle">
+      We believe the Church exists not just for itself, but for the world.
+      Discover how we are making a tangible difference in thousands of lives.
+    </p>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band" aria-label="Impact statistics" style="display: flex; align-items: center; align-content: center; justify-items: center;">
+  <div class="stats-band-inner">
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+      <div class="stat-icon"><i class="fa-solid fa-house-heart"></i></div>
+      <div class="stat-number counter" data-target="500">0</div>
+      <div class="stat-label">Over Families Helped</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+      <div class="stat-icon"><i class="fa-solid fa-hands-clapping"></i></div>
+      <div class="stat-number counter" data-target="120">0</div>
+      <div class="stat-label">Active Volunteers</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+      <div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div>
+      <div class="stat-number counter" data-target="12">0</div>
+      <div class="stat-label">Community Projects</div>
+    </div>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="240">
+      <div class="stat-icon"><i class="fa-solid fa-person-rays"></i></div>
+      <div class="stat-number counter" data-target="2000">0</div>
+      <div class="stat-label">Lives Impacted</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHARITY OVERVIEW -->
+<section class="charity-overview section--lg" id="overview">
+  <div class="container">
+    <div class="overview-split">
+      <div class="overview-media" data-aos="fade-right" data-aos-duration="900">
+        <img
+          src="../Screenshot from 2026-08-04 22-45-14.png"
+          alt="Charity work in action"
+          class="overview-img-main"
+          loading="lazy"
+        />
+        <a href="https://www.youtube.com/watch?v=mZRzSzsGQ4A"
+           class="overview-video-btn glightbox"
+           data-glightbox="type: video"
+           aria-label="Watch our charity video">
+          <i class="fa-solid fa-play"></i>
+        </a>
+       
+      </div>
+      <div data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+        <div class="section-label section-label--red">What We Do</div>
+        <h2 class="section-heading">Serving the Whole <span>Person, Whole Community</span></h2>
+   
+        <p style="margin-bottom:1.25rem;">
+         Love and beloved outreach international is our charity arm where we express the love of God to our community all over the world by reaching out to the less-privilege and the trouble world that we are a part off, we reach out to people through our charity arm of the ministry.
+
+Through its outreach program, Love and Be Love Outreach International provide support and prayers to people in Pretoria’s inner city and beyond. Those seeking Almighty God’s hand in their lives are encouraged to engage the entity, which seeks to inspire and intercede on their behalf. <br> <br> As a devout servant of God, the founder of LBOI, Br Solomon Dini, has understood that God’s words have never changed and can make anyone a winner if they avail themselves of them. In addition to teaching, counseling, blessing, and delivering, God continues to employ His servant as an instrument of salvation and blessing. We aim to reach millions of people around the world through various platforms (Social Media, Online Television, and radio stations).
+        </p>
+
+        <a href="#donate" class="btn btn-red btn-lg">
+          Support Our Work <i class="fa-solid fa-heart btn-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS GRID -->
+
+
+<!-- COMMUNITY OUTREACH — ALTERNATING -->
+<section class="outreach-section section--lg" id="outreach">
+  <div class="container">
+    <div class="section-header section-header--center" data-aos="fade-up">
+      <div class="section-label">Deep Dives</div>
+      <h2 class="section-heading">Community <span>Outreach</span> in Detail</h2>
+    </div>
+
+    <!-- Food Assistance -->
+    <div class="outreach-item" data-aos="fade-up">
+      <div class="outreach-media">
+        <img src="../16.jpeg" alt="Food distribution" class="outreach-img" loading="lazy" />
+      </div>
+      <div class="outreach-text">
+        <div class="section-label section-label--red">Food Assistance</div>
+        <h3 class="section-heading" style="font-size:clamp(1.5rem,3vw,2.2rem);">No One Goes Hungry on Our Watch</h3>
+        <p style="margin-bottom:1rem;">
+          We have been running programmes to help the less fortunate get food on the table.
+        </p>
+        <div class="outreach-list">
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> 200+ hot homes reached</div>
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> Happier families</div>
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> Food hampers </div>
+
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Volunteer With Us <i class="fa-solid fa-arrow-right btn-arrow"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Youth Development -->
+
+
+    <!-- Missions -->
+    <!-- <div class="outreach-item" data-aos="fade-up">
+      <div class="outreach-media">
+        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=900&q=80" alt="Mission trip" class="outreach-img" loading="lazy" />
+      </div>
+      <div class="outreach-text">
+        <div class="section-label section-label--red">Global Missions</div>
+        <h3 class="section-heading" style="font-size:clamp(1.5rem,3vw,2.2rem);">Taking the Gospel to the Ends of the Earth</h3>
+        <p style="margin-bottom:1rem;">
+          Since our first mission trip to Kenya in 2014, we have sent over 150 volunteers
+          on international mission projects across Africa, Asia, and Latin America. Each
+          trip is transformative — for the communities we serve and the volunteers we send.
+        </p>
+        <div class="outreach-list">
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> Annual mission trips to Kenya, Ghana &amp; India</div>
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> 3 school buildings funded and constructed</div>
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> Clean water wells drilled in 5 villages</div>
+          <div class="outreach-list-item"><i class="fa-solid fa-check-circle"></i> Support for 12 indigenous church planters</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Join a Mission Trip <i class="fa-solid fa-arrow-right btn-arrow"></i>
+        </a>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<!-- VOLUNTEER SECTION -->
+
+
+<!-- DONATION SECTION -->
+<section class="donation-section section--lg" id="donate">
+  <div class="container">
+    <div class="section-header section-header--center" data-aos="fade-up">
+      <div class="section-label section-label--red">Give</div>
+      <h2 class="section-heading">Your Gift <span>Changes Lives</span></h2>
+      <p class="section-subheading">
+        100% of charitable donations go directly to our outreach programs.
+        No administrative fees. Every dollar makes a difference.
+      </p>
+    </div>
+
+    <div class="donation-inner">
+      <div data-aos="fade-right" data-aos-duration="900">
+        
+        <p style="margin-bottom:1.5rem;font-size:var(--text-sm);">
+          Even a small gift, given consistently, creates an outsized impact
+          in the lives of the people we serve.
+        </p>
+
+
+        <div class="donation-methods">
+      
+          <div class="donation-method">
+            <div class="donation-method-icon"><i class="fa-brands fa-paypal"></i></div>
+            <div class="donation-method-text">
+              <h5>PayPal</h5>
+              <p>Send to <a style="color: blue; text-decoration: underline;" href="paypal.me/ArmOfGodTV">ArmOfGodTV</a> via PayPal</p>
+            </div>
+          </div>
+          <div class="donation-method">
+            <div class="donation-method-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div class="donation-method-text">
+              <h5>Bank Transfer</h5>
+              <p>Contact our office for direct bank transfer details</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="btn btn-red btn-xl" style="width:100%;justify-content:center;">
+          <i class="fa-solid fa-heart"></i> Donate Now
+        </a>
+      </div>
+
+      <div class="donation-media" data-aos="fade-left" data-aos-duration="900" data-aos-delay="100">
+        <img src="../13.jpeg" alt="Charity in action" class="donation-img" loading="lazy" />
+        <div class="donation-img-overlay">
+          <blockquote class="donation-img-quote">
+            "Your generosity doesn't just fill stomachs or fund projects —
+            it restores dignity and gives people back their hope."
+            <cite>— Pastor Solom Doko</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="cta-bg-shape cta-bg-shape-1" aria-hidden="true"></div>
+  <div class="cta-bg-shape cta-bg-shape-2" aria-hidden="true"></div>
+  <div class="cta-content" data-aos="fade-up">
+    <div class="section-label section-label--white" style="justify-content:center;">Together We Can Do More</div>
+    <h2 class="cta-title">Partner With Us in<br/>Transforming Our Community</h2>
+    <p class="cta-subtitle">
+      Whether through giving, volunteering, or prayer — your partnership
+      amplifies our ability to serve those who need it most.
+    </p>
+    <div class="cta-actions">
+      <a href="#donate" class="btn btn-red btn-xl">Give Today <i class="fa-solid fa-heart"></i></a>
+      <a href="contact.html" class="btn btn-secondary btn-xl">Volunteer <i class="fa-solid fa-hands-helping"></i></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-wave" aria-hidden="true"></div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">
+
+        <div class="footer-logo-text">
+    <img src="../logo.png" width="80%" alt="">
+        </div>
+      </a>
+      <p class="footer-tagline">A place where faith grows, lives are transformed, and communities are strengthened through Jesus Christ.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/amrofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon twitter" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://tiktok.com/@armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Quick Links</h3>
+      <nav class="footer-links">
+        <a href="../index.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a>
+        <a href="about.html"    class="footer-link"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+        <a href="charity.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Charity</a>
+        <a href="gallery.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Gallery</a>
+        <a href="contact.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Service Times</h3>
+      <div class="service-times">
+        <div class="service-time-item"><span class="service-time-day">Saturday</span><span class="service-time-name">House Fellowship</span><span class="service-time-hour">3:00 PM</span></div>
+           </div>
+    </div>
+    <div class="footer-newsletter">
+      <h3 class="footer-col-title">Stay Connected</h3>
+      <p>Subscribe to receive weekly sermons, events, and encouragement.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email" />
+        <button type="submit" class="newsletter-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <div class="footer-contact-items" style="margin-top:1.5rem;">
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Eersterust, Kuvukuland Informal Settlement, Pretoria</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+27 61 536 9749</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>info@armofgod.tv</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-bottom-text">&copy; 2026 Arm of God Ministries. All rights reserved. Website by <a href="https://wizzidom.co.za" style="color:rgba(255,255,255,0.5);">Wizzidom Solutions</a></p>
+    <nav class="footer-bottom-links">
+      <a href="#" class="footer-bottom-link">Privacy Policy</a>
+      <a href="#" class="footer-bottom-link">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/charity.js"></script>
+<script src="../js/live.js"></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Watch ArmOfGodTV live or catch up on recent messages from Arm of God Ministries." />
+  <meta name="theme-color" content="#1A6FBF" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Watch Live — Arm of God TV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/footer.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link rel="stylesheet" href="../css/live.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="nav-solid" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="Arm of God Ministries Home">
+      <div><img src="../logo.png" width="80%" alt="Arm of God Ministries" /></div>
+    </a>
+    <ul class="nav-links nav-desktop" role="list">
+      <li><a href="../index.html"  class="nav-link">Home</a></li>
+      <li><a href="about.html"     class="nav-link">About Us</a></li>
+      <li><a href="charity.html"   class="nav-link">Charity</a></li>
+      <li><a href="gallery.html"   class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"   class="nav-link">Contact</a></li>
+      <li>
+        <a href="live.html" class="nav-link nav-link--live active" id="navWatchLive" aria-label="Watch Live">
+          <span class="nav-live-dot" id="navLiveDot" aria-hidden="true"></span>
+          <span id="navLiveText">Watch Live</span>
+        </a>
+      </li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta nav-desktop">
+      Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-links">
+    <a href="../index.html" class="nav-drawer-link">Home <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="about.html"    class="nav-drawer-link">About Us <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="charity.html"  class="nav-drawer-link">Charity <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="gallery.html"  class="nav-drawer-link">Gallery <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="contact.html"  class="nav-drawer-link">Contact <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="live.html"     class="nav-drawer-link nav-drawer-link--live active" id="navDrawerWatchLive">
+      <span>
+        <span class="nav-live-dot nav-live-dot--drawer" id="navDrawerLiveDot" aria-hidden="true"></span>
+        <span id="navDrawerLiveText">Watch Live</span>
+      </span>
+      <i class="fa-solid fa-chevron-right"></i>
+    </a>
+  </div>
+  <div class="nav-drawer-cta">
+    <a href="contact.html" class="btn btn-primary">Plan Your Visit</a>
+    <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- PAGE HERO -->
+  <!-- <section class="page-hero loaded" aria-label="Watch Live hero">
+    <div class="page-hero-bg">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80" alt="Live broadcast" loading="eager" fetchpriority="high" />
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content" data-aos="fade-up" data-aos-duration="800">
+      <div class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span class="breadcrumb-current">Watch Live</span>
+      </div>
+      <h1 class="page-hero-title" id="liveHeroTitle">Watch <span style="background:linear-gradient(135deg,#60B4FF,#A8D8FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ArmOfGodTV</span></h1>
+      <p class="page-hero-subtitle" id="liveHeroSubtitle">
+        Tune in to our live services or watch recent messages from Arm of God Ministries.
+      </p>
+    </div>
+  </section> -->
+
+  <!-- LIVE CONTENT AREA -->
+  <section class="live-section section--lg" id="liveContent" aria-label="Live stream content">
+    <div class="container">
+
+      <!-- Loading State -->
+      <div class="live-loading" id="liveLoading" aria-live="polite" aria-label="Checking live status">
+        <div class="live-spinner" aria-hidden="true">
+          <div class="spinner-ring"></div>
+        </div>
+        <p class="live-loading-text">Checking live status…</p>
+      </div>
+
+      <!-- LIVE STATE: Active stream -->
+      <div class="live-stream-wrap" id="liveStreamWrap" style="display:none;" aria-label="Live stream player">
+        <div class="live-stream-header" data-aos="fade-up">
+          <div class="live-badge-large" aria-label="Live now">
+            <span class="live-pulse-ring" aria-hidden="true"></span>
+            <span class="live-badge-dot" aria-hidden="true"></span>
+            <span class="live-badge-text">LIVE NOW</span>
+          </div>
+          <h2 class="live-stream-title" id="liveStreamTitle">ArmOfGodTV — Live Service</h2>
+          <p class="live-stream-desc" id="liveStreamDesc">Join us for worship. Share this stream with someone who needs it today.</p>
+        </div>
+
+        <div class="live-player-outer" data-aos="fade-up" data-aos-delay="100">
+          <div class="live-player-ratio" id="livePlayerRatio">
+            <!-- iframe injected by JS -->
+          </div>
+        </div>
+
+        <div class="live-actions" data-aos="fade-up" data-aos-delay="150">
+          <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="btn btn-red btn-lg">
+            <i class="fa-brands fa-youtube"></i> Open on YouTube
+          </a>
+          <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg">
+            <i class="fa-brands fa-facebook-f"></i> Facebook Page
+          </a>
+        </div>
+      </div>
+
+      <!-- NOT-LIVE STATE: Recent videos -->
+      <div class="live-not-live-wrap" id="liveNotLiveWrap" style="display:none;">
+        <div class="not-live-header" data-aos="fade-up">
+          <div class="section-label">ArmOfGodTV</div>
+          <h2 class="section-heading">Recent <span>Messages</span></h2>
+          <p class="section-subheading">
+            We're not live right now. Watch our recent messages below, or subscribe to be notified when we go live.
+          </p>
+          <a href="https://www.youtube.com/@ArmOfGodTV?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-red btn-lg not-live-subscribe">
+            <i class="fa-brands fa-youtube"></i> Subscribe for Live Notifications
+          </a>
+        </div>
+
+        <!-- Videos loading -->
+        <div class="videos-loading" id="videosLoading" aria-live="polite" style="display:none;" aria-label="Loading recent videos">
+          <div class="live-spinner" aria-hidden="true">
+            <div class="spinner-ring"></div>
+          </div>
+          <p class="live-loading-text">Loading recent videos…</p>
+        </div>
+
+        <!-- Videos error -->
+        <div class="videos-error" id="videosError" style="display:none;" role="alert">
+          <div class="videos-error-icon"><i class="fa-brands fa-youtube"></i></div>
+          <h3>Couldn't Load Videos</h3>
+          <p id="videosErrorMsg">There was a problem loading recent videos. Please try again or visit our YouTube channel directly.</p>
+          <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+            Visit YouTube Channel <i class="fa-solid fa-arrow-right btn-arrow"></i>
+          </a>
+        </div>
+
+        <!-- Videos grid -->
+        <div class="videos-grid" id="videosGrid" role="list" aria-label="Recent videos" style="display:none;">
+          <!-- Cards injected by JS -->
+        </div>
+
+        <div class="videos-more" id="videosMore" style="display:none;" data-aos="fade-up">
+          <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+            See All Videos on YouTube <i class="fa-brands fa-youtube btn-arrow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- API Error State -->
+      <div class="live-api-error" id="liveApiError" style="display:none;" role="alert">
+        <div class="live-api-error-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <h3>Unable to Connect</h3>
+        <p id="liveApiErrorMsg">We couldn't check the live status right now. Please try refreshing the page.</p>
+        <div class="live-api-error-actions">
+          <button class="btn btn-primary btn-lg" onclick="initLivePage()">
+            <i class="fa-solid fa-rotate-right"></i> Try Again
+          </button>
+          <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg">
+            <i class="fa-brands fa-youtube"></i> Visit YouTube
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT ARMOFGODTV STRIP -->
+  <section class="live-channel-strip section" id="liveChannelStrip" aria-label="About ArmOfGodTV">
+    <div class="container">
+      <div class="channel-strip-inner" data-aos="fade-up">
+        <div class="channel-strip-icon">
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+        <div class="channel-strip-text">
+          <h3>ArmOfGodTV on YouTube</h3>
+          <p>Subscribe to our channel and never miss a sermon, worship session, or special broadcast.</p>
+        </div>
+        <div class="channel-strip-actions">
+          <a href="https://www.youtube.com/@ArmOfGodTV?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn btn-red btn-lg">
+            <i class="fa-brands fa-youtube"></i> Subscribe
+          </a>
+          <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" aria-label="Visit CTA">
+    <div class="cta-bg-shape cta-bg-shape-1" aria-hidden="true"></div>
+    <div class="cta-bg-shape cta-bg-shape-2" aria-hidden="true"></div>
+    <div class="cta-content" data-aos="fade-up">
+      <div class="section-label section-label--white" style="justify-content:center;">Join Us In Person</div>
+      <h2 class="cta-title">Experience It Live<br/>This Saturday</h2>
+      <p class="cta-subtitle">
+        Online is wonderful — but there's something special about gathering together.
+        Come worship with us in person.
+      </p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-red btn-xl">Plan Your Visit <i class="fa-solid fa-arrow-right btn-arrow"></i></a>
+        <a href="contact.html" class="btn btn-secondary btn-xl">Contact Us <i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-wave" aria-hidden="true"></div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">
+        <div class="footer-logo-text">
+          <img src="../logo.png" width="80%" alt="" />
+        </div>
+      </a>
+      <p class="footer-tagline">A place where faith grows, lives are transformed, and communities are strengthened through Jesus Christ.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ArmOfGodTV.org" target="_blank" rel="noopener noreferrer" class="social-icon facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@ArmOfGodTV" target="_blank" rel="noopener noreferrer" class="social-icon youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://twitter.com/amrofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon twitter" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://tiktok.com/@armofgodtv" target="_blank" rel="noopener noreferrer" class="social-icon tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Quick Links</h3>
+      <nav class="footer-links">
+        <a href="../index.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Home</a>
+        <a href="about.html"    class="footer-link"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+        <a href="charity.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Charity</a>
+        <a href="gallery.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Gallery</a>
+        <a href="contact.html"  class="footer-link"><i class="fa-solid fa-chevron-right"></i> Contact</a>
+        <a href="live.html"     class="footer-link"><i class="fa-solid fa-chevron-right"></i> Watch Live</a>
+      </nav>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-col-title">Service Times</h3>
+      <div class="service-times">
+        <div class="service-time-item"><span class="service-time-day">Saturday</span><span class="service-time-name">House Fellowship</span><span class="service-time-hour">3:00 PM</span></div>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <h3 class="footer-col-title">Stay Connected</h3>
+      <p>Subscribe to receive weekly sermons, events, and encouragement.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email" />
+        <button type="submit" class="newsletter-btn"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <div class="footer-contact-items" style="margin-top:1.5rem;">
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Eersterust, Kuvukuland Informal Settlement, Pretoria</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><span>+27 61 536 9749</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><span>info@armofgod.tv</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-bottom-text">&copy; 2026 Arm of God Ministries. All rights reserved. Website by <a href="https://wizzidom.co.za" style="color:rgba(255,255,255,0.5);">Wizzidom Solutions</a></p>
+    <nav class="footer-bottom-links">
+      <a href="#" class="footer-bottom-link">Privacy Policy</a>
+      <a href="#" class="footer-bottom-link">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/live.js"></script>
+</body>
+</html>
