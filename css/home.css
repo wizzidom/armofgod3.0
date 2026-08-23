@@ -18,7 +18,8 @@
   z-index: 0;
 }
 
-.hero-bg img {
+.hero-bg img,
+.hero-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -27,7 +28,8 @@
   transition: transform 8s ease;
 }
 
-.hero.loaded .hero-bg img {
+.hero.loaded .hero-bg img,
+.hero.loaded .hero-bg video {
   transform: scale(1);
 }
 
