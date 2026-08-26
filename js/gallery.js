@@ -1,17 +1,15 @@
 /* ============================================================
    GALLERY PAGE — JavaScript
-   Loads images dynamically from /_data/gallery.json
-   Supports: GLightbox, filter tabs, view toggle, GSAP, parallax
+   Loads images dynamically from _data/gallery.json
+   + any CMS-added photos from _data/photos/ via GitHub API
    ============================================================ */
 
 'use strict';
 
-/* ─── Size variants cycled for visual variety ───────────────
-   Rotates through the same classes the original hardcoded
-   cards used so the masonry layout looks identical.          */
+/* ─── Size variants cycled for visual variety ─────────────── */
 const SIZE_CYCLE = ['tall', 'square', 'wide', 'short', 'tall', 'square', 'short', 'wide'];
 
-/* ─── Category label map (value → display label) ─────────── */
+/* ─── Category label map ──────────────────────────────────── */
 const CATEGORY_LABELS = {
   worship:     'Worship',
   sunday:      'Sunday Services',
@@ -21,12 +19,14 @@ const CATEGORY_LABELS = {
   conferences: 'Conferences',
 };
 
-/* ─── GitHub repo details (used to list photos via API) ─────
-   The Contents API lets us fetch the list of files in a folder
-   without needing a server-side directory listing.            */
-const GITHUB_REPO    = 'wizzidom/armofgod3.0';
-const PHOTOS_DIR     = '_data/photos';
-const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/${PHOTOS_DIR}`;
+/* ─── Repo config ─────────────────────────────────────────── */
+const GITHUB_REPO = 'wizzidom/armofgod3.0';
+
+/* ─── Site base path on GitHub Pages ─────────────────────────
+   The site is hosted at https://wizzidom.github.io/armofgod3.0/
+   so bare image filenames like "10.jpeg" live at /armofgod3.0/10.jpeg
+   ─────────────────────────────────────────────────────────── */
+const SITE_BASE = '/armofgod3.0';
 
 /* ============================================================
    MAIN ENTRY POINT
@@ -36,82 +36,73 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
-   STEP 1 — Fetch all photos then render everything
-   Photos come from two sources merged together:
-   1. _data/gallery.json  — original/migrated photos
-   2. _data/photos/*.json — photos added via Decap CMS admin
+   LOAD & RENDER
+   1. Fetch _data/gallery.json (original migrated photos)
+   2. Fetch _data/photos/*.json via GitHub API (CMS-added photos)
+   3. Merge, render, boot interactivity
    ============================================================ */
 async function loadAndRender() {
   const grid    = document.getElementById('galleryGrid');
   const countEl = document.getElementById('galleryCountNum');
-
   if (!grid) return;
 
   grid.innerHTML = buildLoadingSkeleton();
 
   let photos = [];
 
+  /* ── 1. Original photos from gallery.json ─────────────── */
   try {
-    // Load original gallery.json (migrated photos)
-    const baseRes = await fetch('../_data/gallery.json');
-    if (baseRes.ok) {
-      const basePhotos = await baseRes.json();
-      if (Array.isArray(basePhotos)) photos = photos.concat(basePhotos);
+    const res = await fetch('../_data/gallery.json');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) photos = photos.concat(data);
     }
   } catch (err) {
-    console.warn('[Gallery] Could not load gallery.json:', err);
+    console.warn('[Gallery] gallery.json fetch failed:', err);
   }
 
+  /* ── 2. CMS-added photos from _data/photos/ ───────────── */
   try {
-    // Load CMS-added photos from GitHub Contents API
-    const apiRes = await fetch(GITHUB_API_URL, {
+    const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/_data/photos`;
+    const res    = await fetch(apiUrl, {
       headers: { 'Accept': 'application/vnd.github.v3+json' }
     });
 
-    if (apiRes.ok) {
-      const files = await apiRes.json();
-
+    if (res.ok) {
+      const files = await res.json();
       if (Array.isArray(files)) {
-        // Fetch each individual JSON file in parallel
-        const fetches = files
-          .filter(f => f.name.endsWith('.json'))
-          .map(f => fetch(f.download_url).then(r => r.json()).catch(() => null));
-
+        const jsonFiles = files.filter(f => f.name.endsWith('.json') && f.name !== '.gitkeep');
+        const fetches   = jsonFiles.map(f =>
+          fetch(f.download_url)
+            .then(r => r.json())
+            .catch(() => null)
+        );
         const results = await Promise.all(fetches);
-        results.forEach(photo => {
-          if (photo && photo.src) photos.push(photo);
-        });
+        results.forEach(p => { if (p && p.src) photos.push(p); });
       }
     }
   } catch (err) {
-    console.warn('[Gallery] Could not load CMS photos:', err);
+    console.warn('[Gallery] CMS photos fetch failed:', err);
   }
 
+  /* ── 3. Render ─────────────────────────────────────────── */
   if (photos.length === 0) {
     grid.innerHTML = buildErrorState('No photos found in the gallery yet.');
     return;
   }
 
-  grid.innerHTML = photos.map((photo, index) => buildCard(photo, index)).join('');
-
+  grid.innerHTML = photos.map((photo, i) => buildCard(photo, i)).join('');
   if (countEl) countEl.textContent = photos.length;
-
-  initInteractivity(grid, photos.length);
+  initInteractivity(grid);
 }
 
 /* ============================================================
-   STEP 2 — Build a single gallery card
+   BUILD A SINGLE GALLERY CARD
    ============================================================ */
 function buildCard(photo, index) {
-  const sizeClass = SIZE_CYCLE[index % SIZE_CYCLE.length];
-  const catLabel  = CATEGORY_LABELS[photo.category] || photo.category || 'General';
-
-  /* Uploaded images from Decap CMS land in /assets/gallery/
-     and are stored as absolute paths like /assets/gallery/img.jpg.
-     Original images that were already on the site are just filenames
-     like "10.jpeg" — resolve those relative to the repo root.       */
-  const src = resolveSrc(photo.src);
-
+  const sizeClass   = SIZE_CYCLE[index % SIZE_CYCLE.length];
+  const catLabel    = CATEGORY_LABELS[photo.category] || photo.category || 'General';
+  const src         = resolveSrc(photo.src);
   const title       = escapeHtml(photo.title       || 'Untitled');
   const description = escapeHtml(photo.description || '');
 
@@ -135,21 +126,43 @@ function buildCard(photo, index) {
 }
 
 /* ============================================================
-   STEP 3 — Boot all interactive features
+   RESOLVE IMAGE SRC
+   Handles three cases:
+   1. Full URL (http/https)       → used as-is
+   2. Absolute path (/assets/...) → prepend SITE_BASE
+   3. Bare filename (10.jpeg)     → prepend SITE_BASE/
    ============================================================ */
-function initInteractivity(grid, totalCount) {
+function resolveSrc(src) {
+  if (!src) return '';
+
+  // Full external URL — use as-is
+  if (src.startsWith('http://') || src.startsWith('https://')) return src;
+
+  // Strip any leading ../ the CMS may have stored
+  const clean = src.replace(/^(\.\.\/)+/, '');
+
+  // Absolute path like /assets/gallery/photo.jpg
+  if (clean.startsWith('/')) return `${SITE_BASE}${clean}`;
+
+  // Bare filename like 10.jpeg or assets/gallery/photo.jpg
+  return `${SITE_BASE}/${clean}`;
+}
+
+/* ============================================================
+   INTERACTIVITY — filter, search, view toggle, lightbox, etc.
+   ============================================================ */
+function initInteractivity(grid) {
   const filterTabs  = document.querySelectorAll('.filter-tab');
   const searchInput = document.getElementById('gallerySearch');
   const countEl     = document.getElementById('galleryCountNum');
   const emptyState  = document.getElementById('galleryEmpty');
   const viewBtns    = document.querySelectorAll('.view-btn');
   const filterBar   = document.getElementById('galleryFilterBar');
+  const allCards    = Array.from(grid.querySelectorAll('.gallery-card'));
 
   let currentFilter = 'all';
   let searchQuery   = '';
   let lightbox      = null;
-
-  const allCards = Array.from(grid.querySelectorAll('.gallery-card'));
 
   /* ─── GLightbox ─────────────────────────────────────────── */
   function initLightbox() {
@@ -168,16 +181,14 @@ function initInteractivity(grid, totalCount) {
 
   initLightbox();
 
-  /* ─── Filter / Search logic ─────────────────────────────── */
+  /* ─── Filter / search ───────────────────────────────────── */
   function applyFilter() {
     let visible = 0;
-
     allCards.forEach(card => {
       const cat      = (card.dataset.category || '').toLowerCase();
       const titleEl  = card.querySelector('.gallery-card-title');
       const catEl    = card.querySelector('.gallery-card-cat');
-      const combined = [
-        cat,
+      const combined = [cat,
         titleEl ? titleEl.textContent.toLowerCase() : '',
         catEl   ? catEl.textContent.toLowerCase()   : '',
       ].join(' ');
@@ -198,18 +209,13 @@ function initInteractivity(grid, totalCount) {
 
     if (countEl)    countEl.textContent = visible;
     if (emptyState) emptyState.classList.toggle('visible', visible === 0);
-
-    // Rebuild lightbox so only visible items are included
     initLightbox();
   }
 
   /* ─── Filter tabs ───────────────────────────────────────── */
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      filterTabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
+      filterTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
       currentFilter = tab.dataset.filter || 'all';
@@ -235,33 +241,29 @@ function initInteractivity(grid, totalCount) {
       btn.addEventListener('click', () => {
         viewBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const cols = btn.dataset.cols;
         grid.className = 'gallery-grid';
-        if (cols === '3') grid.classList.add('view-3');
-        if (cols === '2') grid.classList.add('view-2');
+        if (btn.dataset.cols === '3') grid.classList.add('view-3');
+        if (btn.dataset.cols === '2') grid.classList.add('view-2');
       });
     });
   }
 
   /* ─── Sticky filter bar ─────────────────────────────────── */
   if (filterBar) {
-    const navHeight = parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue('--nav-height') || '80'
-    );
-    const observer = new IntersectionObserver(
-      ([entry]) => filterBar.classList.toggle('is-stuck', !entry.isIntersecting),
-      { threshold: 1, rootMargin: `-${navHeight}px 0px 0px 0px` }
-    );
-    observer.observe(filterBar);
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height') || '80');
+    new IntersectionObserver(
+      ([e]) => filterBar.classList.toggle('is-stuck', !e.isIntersecting),
+      { threshold: 1, rootMargin: `-${navH}px 0px 0px 0px` }
+    ).observe(filterBar);
   }
 
   /* ─── Card hover parallax ───────────────────────────────── */
   allCards.forEach(card => {
     card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x    = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y    = (e.clientY - rect.top)  / rect.height - 0.5;
-      const img  = card.querySelector('img');
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      const img = card.querySelector('img');
       if (img) img.style.transform = `scale(1.08) translate(${x * 8}px, ${y * 8}px)`;
     });
     card.addEventListener('mouseleave', () => {
@@ -270,69 +272,37 @@ function initInteractivity(grid, totalCount) {
     });
   });
 
-  /* ─── GSAP entrance animation ───────────────────────────── */
+  /* ─── GSAP entrance ─────────────────────────────────────── */
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.fromTo(allCards,
       { opacity: 0, y: 24 },
-      {
-        opacity:  1,
-        y:        0,
-        duration: 0.5,
-        stagger:  { amount: 0.8, from: 'start' },
-        ease:     'power2.out',
-        scrollTrigger: {
-          trigger: grid,
-          start:   'top 85%',
-          once:    true,
-        },
-      }
+      { opacity: 1, y: 0, duration: 0.5, stagger: { amount: 0.8 }, ease: 'power2.out',
+        scrollTrigger: { trigger: grid, start: 'top 85%', once: true } }
     );
   }
 
-  /* Run initial filter pass (shows all cards) */
   applyFilter();
 }
 
 /* ============================================================
-   HELPERS
+   UTILITIES
    ============================================================ */
-
-/**
- * Resolve image src to the correct path.
- * - Absolute paths (/assets/gallery/...) are used as-is.
- * - Relative filenames (10.jpeg) are prefixed with ../ because
- *   gallery.html lives in /pages/ and the images are at root.
- */
-function resolveSrc(src) {
-  if (!src) return '';
-  if (src.startsWith('/') || src.startsWith('http')) return src;
-  // Strip any leading ../ the CMS may have stored, then re-add one
-  const clean = src.replace(/^(\.\.\/)+/, '');
-  return `../${clean}`;
-}
-
 function escapeHtml(str) {
   return String(str)
-    .replace(/&/g,  '&amp;')
-    .replace(/</g,  '&lt;')
-    .replace(/>/g,  '&gt;')
-    .replace(/"/g,  '&quot;')
-    .replace(/'/g,  '&#39;');
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function buildLoadingSkeleton() {
-  return Array.from({ length: 6 }).map((_, i) => {
-    const size = SIZE_CYCLE[i % SIZE_CYCLE.length];
-    return `<div class="gallery-card gallery-card--${size} gallery-skeleton" aria-hidden="true"></div>`;
-  }).join('');
+  return Array.from({ length: 6 }).map((_, i) =>
+    `<div class="gallery-card gallery-card--${SIZE_CYCLE[i % SIZE_CYCLE.length]} gallery-skeleton" aria-hidden="true"></div>`
+  ).join('');
 }
 
 function buildErrorState(msg = 'Unable to load gallery photos. Please try refreshing the page.') {
-  return `
-    <div class="gallery-empty visible" role="alert">
-      <i class="fa-solid fa-image-slash"></i>
-      <h4>Gallery Unavailable</h4>
-      <p>${escapeHtml(msg)}</p>
-    </div>
-  `;
+  return `<div class="gallery-empty visible" role="alert">
+    <i class="fa-solid fa-image-slash"></i>
+    <h4>Gallery Unavailable</h4>
+    <p>${escapeHtml(msg)}</p>
+  </div>`;
 }
