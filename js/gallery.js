@@ -130,7 +130,10 @@ function resolveSrc(src) {
   // Strip any leading ../ the CMS may have stored
   const clean = src.replace(/^(\.\.\/)+/, '');
 
-  // Absolute path like /assets/gallery/photo.jpg
+  // Already has the site base prefix — use as-is
+  if (clean.startsWith(SITE_BASE + '/') || clean === SITE_BASE) return clean;
+
+  // Absolute path like /assets/gallery/photo.jpg — prepend site base
   if (clean.startsWith('/')) return `${SITE_BASE}${clean}`;
 
   // Bare filename like 10.jpeg or assets/gallery/photo.jpg
