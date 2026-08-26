@@ -21,9 +21,12 @@ const CATEGORY_LABELS = {
   conferences: 'Conferences',
 };
 
-/* ─── Path to the data file (relative to site root) ──────── */
-/* gallery.html is at /pages/gallery.html so we go up one level */
-const GALLERY_DATA_URL = '../_data/gallery.json';
+/* ─── GitHub repo details (used to list photos via API) ─────
+   The Contents API lets us fetch the list of files in a folder
+   without needing a server-side directory listing.            */
+const GITHUB_REPO    = 'wizzidom/armofgod3.0';
+const PHOTOS_DIR     = '_data/photos';
+const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/${PHOTOS_DIR}`;
 
 /* ============================================================
    MAIN ENTRY POINT
@@ -33,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
-   STEP 1 — Fetch gallery.json then render everything
+   STEP 1 — Fetch all photos then render everything
+   Photos come from two sources merged together:
+   1. _data/gallery.json  — original/migrated photos
+   2. _data/photos/*.json — photos added via Decap CMS admin
    ============================================================ */
 async function loadAndRender() {
   const grid    = document.getElementById('galleryGrid');
@@ -41,33 +47,55 @@ async function loadAndRender() {
 
   if (!grid) return;
 
-  // Show a loading skeleton while fetching
   grid.innerHTML = buildLoadingSkeleton();
 
   let photos = [];
 
   try {
-    const res = await fetch(GALLERY_DATA_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    photos = await res.json();
+    // Load original gallery.json (migrated photos)
+    const baseRes = await fetch('../_data/gallery.json');
+    if (baseRes.ok) {
+      const basePhotos = await baseRes.json();
+      if (Array.isArray(basePhotos)) photos = photos.concat(basePhotos);
+    }
   } catch (err) {
-    console.error('[Gallery] Failed to load gallery.json:', err);
-    grid.innerHTML = buildErrorState();
-    return;
+    console.warn('[Gallery] Could not load gallery.json:', err);
   }
 
-  if (!Array.isArray(photos) || photos.length === 0) {
+  try {
+    // Load CMS-added photos from GitHub Contents API
+    const apiRes = await fetch(GITHUB_API_URL, {
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    });
+
+    if (apiRes.ok) {
+      const files = await apiRes.json();
+
+      if (Array.isArray(files)) {
+        // Fetch each individual JSON file in parallel
+        const fetches = files
+          .filter(f => f.name.endsWith('.json'))
+          .map(f => fetch(f.download_url).then(r => r.json()).catch(() => null));
+
+        const results = await Promise.all(fetches);
+        results.forEach(photo => {
+          if (photo && photo.src) photos.push(photo);
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('[Gallery] Could not load CMS photos:', err);
+  }
+
+  if (photos.length === 0) {
     grid.innerHTML = buildErrorState('No photos found in the gallery yet.');
     return;
   }
 
-  // Render cards into the grid
   grid.innerHTML = photos.map((photo, index) => buildCard(photo, index)).join('');
 
-  // Update count
   if (countEl) countEl.textContent = photos.length;
 
-  // Boot all the interactive features now that the DOM is ready
   initInteractivity(grid, photos.length);
 }
 

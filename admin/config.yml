@@ -1,31 +1,3 @@
-# ============================================================
-# Decap CMS Configuration — Arm of God Ministries
-# ============================================================
-#
-# SETUP INSTRUCTIONS
-# ------------------
-# 1. Replace YOUR_GITHUB_USERNAME and YOUR_REPO_NAME below
-#    with your actual GitHub username and repository name.
-#    Example:  repo: johnsmith/arm-of-god-ministries
-#
-# 2. Go to your GitHub repo → Settings → Pages
-#    Make sure GitHub Pages is enabled on the correct branch.
-#
-# 3. Go to https://github.com/settings/applications
-#    Register a new OAuth App with:
-#      Homepage URL:        https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME
-#      Authorization URL:   https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/admin/
-#
-# 4. Use sveltia-cms-auth (free) as your OAuth proxy:
-#    https://github.com/sveltia/sveltia-cms-auth
-#    Follow its README to deploy it to Cloudflare Pages (free),
-#    then replace the base_url below with your deployed URL.
-#
-# 5. Your client visits:
-#    https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/admin/
-#    and logs in with their GitHub account to manage the gallery.
-# ============================================================
-
 backend:
   name: github
   repo: wizzidom/armofgod3.0
@@ -41,41 +13,38 @@ public_folder: "/assets/gallery"
 collections:
   - name: "gallery"
     label: "Gallery"
-    files:
-      - label: "Gallery Photos"
-        name: "gallery"
-        file: "_data/gallery.json"
-        fields:
-          - label: "Photos"
-            name: ""
-            widget: "list"
-            label_singular: "Photo"
-            summary: "{{fields.title}}"
-            fields:
-              - label: "Image"
-                name: "src"
-                widget: "image"
-                hint: "Upload a photo from your device. It will be stored in /assets/gallery/"
+    label_singular: "Photo"
+    folder: "_data/photos"
+    format: "json"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+    fields:
+      - label: "Image"
+        name: "src"
+        widget: "image"
+        hint: "Upload a photo from your device. It will be saved to /assets/gallery/"
 
-              - label: "Title"
-                name: "title"
-                widget: "string"
-                hint: "A short title shown on hover (e.g. Sunday Morning Worship)"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "Short title shown on hover (e.g. Sunday Morning Worship)"
 
-              - label: "Category"
-                name: "category"
-                widget: "select"
-                options:
-                  - { label: "Worship",          value: "worship" }
-                  - { label: "Sunday Services",   value: "sunday" }
-                  - { label: "Community",         value: "community" }
-                  - { label: "Youth",             value: "youth" }
-                  - { label: "Outreach",          value: "outreach" }
-                  - { label: "Conferences",       value: "conferences" }
-                hint: "Choose the category that best fits this photo"
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Worship",         value: "worship" }
+          - { label: "Sunday Services", value: "sunday" }
+          - { label: "Community",       value: "community" }
+          - { label: "Youth",           value: "youth" }
+          - { label: "Outreach",        value: "outreach" }
+          - { label: "Conferences",     value: "conferences" }
+        hint: "Choose the category that best fits this photo"
 
-              - label: "Description"
-                name: "description"
-                widget: "string"
-                required: false
-                hint: "Optional caption shown when the photo is opened in the lightbox"
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        required: false
+        hint: "Optional caption shown when the photo is opened in the lightbox"
