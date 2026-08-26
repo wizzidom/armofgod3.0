@@ -50,18 +50,7 @@ async function loadAndRender() {
 
   let photos = [];
 
-  /* ── 1. Original photos from gallery.json ─────────────── */
-  try {
-    const res = await fetch('../_data/gallery.json');
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data)) photos = photos.concat(data);
-    }
-  } catch (err) {
-    console.warn('[Gallery] gallery.json fetch failed:', err);
-  }
-
-  /* ── 2. CMS-added photos from _data/photos/ ───────────── */
+  /* ── Photos from _data/photos/ (added via CMS admin) ──── */
   try {
     const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/_data/photos`;
     const res    = await fetch(apiUrl, {
