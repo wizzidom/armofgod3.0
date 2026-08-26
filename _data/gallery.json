@@ -1,0 +1,92 @@
+[
+  {
+    "src": "10.jpeg",
+    "title": "Sunday Morning Worship",
+    "category": "worship",
+    "description": "Our congregation in passionate worship"
+  },
+  {
+    "src": "6.jpg",
+    "title": "Evening Praise Night",
+    "category": "worship",
+    "description": "Spirit-filled evening of praise"
+  },
+  {
+    "src": "11.jpeg",
+    "title": "Morning Service",
+    "category": "sunday",
+    "description": "The congregation gathered for morning service"
+  },
+  {
+    "src": "12.jpeg",
+    "title": "Evening Service",
+    "category": "sunday",
+    "description": "Evening service in full swing"
+  },
+  {
+    "src": "13.jpeg",
+    "title": "Church Family Day",
+    "category": "community",
+    "description": "Our church family together"
+  },
+  {
+    "src": "14.jpg",
+    "title": "Life Groups",
+    "category": "community",
+    "description": "Life groups meeting midweek"
+  },
+  {
+    "src": "15.jpg",
+    "title": "Friday Youth Night",
+    "category": "youth",
+    "description": "Friday Night Youth Programme"
+  },
+  {
+    "src": "16.jpeg",
+    "title": "Youth Education Programme",
+    "category": "youth",
+    "description": "Mentorship and learning programmes"
+  },
+  {
+    "src": "17.jpeg",
+    "title": "Community Service Day",
+    "category": "outreach",
+    "description": "Serving the community with love"
+  },
+  {
+    "src": "18.jpeg",
+    "title": "Community Food Bank",
+    "category": "outreach",
+    "description": "Weekly food bank in action"
+  },
+  {
+    "src": "19.jpeg",
+    "title": "Kenya Mission Trip 2024",
+    "category": "outreach",
+    "description": "Annual international mission project"
+  },
+  {
+    "src": "20.jpeg",
+    "title": "Kingdom Impact Conference",
+    "category": "conferences",
+    "description": "Kingdom Impact Conference 2024"
+  },
+  {
+    "src": "21.jpeg",
+    "title": "Leadership Summit 2024",
+    "category": "conferences",
+    "description": "Annual leaders gathering"
+  },
+  {
+    "src": "22.jpeg",
+    "title": "Worship Team",
+    "category": "worship",
+    "description": "Our talented worship team"
+  },
+  {
+    "src": "23.jpeg",
+    "title": "Baptism Celebration",
+    "category": "sunday",
+    "description": "Celebrating new believers"
+  }
+]

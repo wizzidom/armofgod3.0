@@ -433,3 +433,28 @@
   .filter-tabs          { justify-content: center; }
   .filter-tab           { font-size: var(--text-xs); padding: 0.45rem 0.875rem; }
 }
+
+/* ─── Loading Skeleton ────────────────────────────────────── */
+.gallery-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--light-grey) 25%,
+    #e8edf2 50%,
+    var(--light-grey) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.4s ease infinite;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+/* Give skeletons a visible height matching the size variants */
+.gallery-skeleton.gallery-card--tall   { padding-top: calc(100% * 3/2); }
+.gallery-skeleton.gallery-card--wide   { padding-top: calc(100% * 9/16); }
+.gallery-skeleton.gallery-card--square { padding-top: 100%; }
+.gallery-skeleton.gallery-card--short  { padding-top: calc(100% * 3/4); }
+
+@keyframes skeletonShimmer {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}

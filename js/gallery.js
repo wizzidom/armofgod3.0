@@ -1,48 +1,158 @@
 /* ============================================================
    GALLERY PAGE — JavaScript
-   Filter, Search, View toggle, GLightbox, Load More
+   Loads images dynamically from /_data/gallery.json
+   Supports: GLightbox, filter tabs, view toggle, GSAP, parallax
    ============================================================ */
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ─── Size variants cycled for visual variety ───────────────
+   Rotates through the same classes the original hardcoded
+   cards used so the masonry layout looks identical.          */
+const SIZE_CYCLE = ['tall', 'square', 'wide', 'short', 'tall', 'square', 'short', 'wide'];
 
-  const grid        = document.getElementById('galleryGrid');
+/* ─── Category label map (value → display label) ─────────── */
+const CATEGORY_LABELS = {
+  worship:     'Worship',
+  sunday:      'Sunday Services',
+  community:   'Community',
+  youth:       'Youth',
+  outreach:    'Outreach',
+  conferences: 'Conferences',
+};
+
+/* ─── Path to the data file (relative to site root) ──────── */
+/* gallery.html is at /pages/gallery.html so we go up one level */
+const GALLERY_DATA_URL = '../_data/gallery.json';
+
+/* ============================================================
+   MAIN ENTRY POINT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadAndRender();
+});
+
+/* ============================================================
+   STEP 1 — Fetch gallery.json then render everything
+   ============================================================ */
+async function loadAndRender() {
+  const grid    = document.getElementById('galleryGrid');
+  const countEl = document.getElementById('galleryCountNum');
+
+  if (!grid) return;
+
+  // Show a loading skeleton while fetching
+  grid.innerHTML = buildLoadingSkeleton();
+
+  let photos = [];
+
+  try {
+    const res = await fetch(GALLERY_DATA_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    photos = await res.json();
+  } catch (err) {
+    console.error('[Gallery] Failed to load gallery.json:', err);
+    grid.innerHTML = buildErrorState();
+    return;
+  }
+
+  if (!Array.isArray(photos) || photos.length === 0) {
+    grid.innerHTML = buildErrorState('No photos found in the gallery yet.');
+    return;
+  }
+
+  // Render cards into the grid
+  grid.innerHTML = photos.map((photo, index) => buildCard(photo, index)).join('');
+
+  // Update count
+  if (countEl) countEl.textContent = photos.length;
+
+  // Boot all the interactive features now that the DOM is ready
+  initInteractivity(grid, photos.length);
+}
+
+/* ============================================================
+   STEP 2 — Build a single gallery card
+   ============================================================ */
+function buildCard(photo, index) {
+  const sizeClass = SIZE_CYCLE[index % SIZE_CYCLE.length];
+  const catLabel  = CATEGORY_LABELS[photo.category] || photo.category || 'General';
+
+  /* Uploaded images from Decap CMS land in /assets/gallery/
+     and are stored as absolute paths like /assets/gallery/img.jpg.
+     Original images that were already on the site are just filenames
+     like "10.jpeg" — resolve those relative to the repo root.       */
+  const src = resolveSrc(photo.src);
+
+  const title       = escapeHtml(photo.title       || 'Untitled');
+  const description = escapeHtml(photo.description || '');
+
+  return `
+    <a href="${src}"
+       class="gallery-card gallery-card--${sizeClass} glightbox"
+       data-category="${escapeHtml(photo.category || 'general')}"
+       data-glightbox="title: ${title}; description: ${description}"
+       role="listitem"
+       aria-label="${title} photo">
+      <img src="${src}" alt="${title}" loading="lazy" />
+      <div class="gallery-card-overlay">
+        <div class="gallery-card-info">
+          <div class="gallery-card-cat">${escapeHtml(catLabel)}</div>
+          <div class="gallery-card-title">${title}</div>
+        </div>
+      </div>
+      <div class="gallery-card-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+    </a>
+  `;
+}
+
+/* ============================================================
+   STEP 3 — Boot all interactive features
+   ============================================================ */
+function initInteractivity(grid, totalCount) {
   const filterTabs  = document.querySelectorAll('.filter-tab');
   const searchInput = document.getElementById('gallerySearch');
   const countEl     = document.getElementById('galleryCountNum');
   const emptyState  = document.getElementById('galleryEmpty');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
   const viewBtns    = document.querySelectorAll('.view-btn');
   const filterBar   = document.getElementById('galleryFilterBar');
 
   let currentFilter = 'all';
   let searchQuery   = '';
+  let lightbox      = null;
+
+  const allCards = Array.from(grid.querySelectorAll('.gallery-card'));
 
   /* ─── GLightbox ─────────────────────────────────────────── */
-  let lightbox;
-  if (typeof GLightbox !== 'undefined') {
+  function initLightbox() {
+    if (lightbox) lightbox.destroy();
+    if (typeof GLightbox === 'undefined') return;
     lightbox = GLightbox({
-      selector: '.gallery-card.glightbox:not(.hidden)',
+      selector:        '.gallery-card.glightbox:not(.hidden)',
       touchNavigation: true,
-      loop: true,
-      closeEffect: 'fade',
-      openEffect: 'zoom',
-      skin: 'clean',
-      descPosition: 'bottom',
+      loop:            true,
+      closeEffect:     'fade',
+      openEffect:      'zoom',
+      skin:            'clean',
+      descPosition:    'bottom',
     });
   }
 
-  /* ─── Filter Logic ──────────────────────────────────────── */
-  function applyFilter() {
-    const cards   = grid ? grid.querySelectorAll('.gallery-card') : [];
-    let   visible = 0;
+  initLightbox();
 
-    cards.forEach(card => {
-      const cat   = (card.dataset.category || '').toLowerCase();
-      const title = (card.querySelector('.gallery-card-title')?.textContent || '').toLowerCase();
-      const catEl = (card.querySelector('.gallery-card-cat')?.textContent || '').toLowerCase();
-      const combined = title + ' ' + catEl + ' ' + cat;
+  /* ─── Filter / Search logic ─────────────────────────────── */
+  function applyFilter() {
+    let visible = 0;
+
+    allCards.forEach(card => {
+      const cat      = (card.dataset.category || '').toLowerCase();
+      const titleEl  = card.querySelector('.gallery-card-title');
+      const catEl    = card.querySelector('.gallery-card-cat');
+      const combined = [
+        cat,
+        titleEl ? titleEl.textContent.toLowerCase() : '',
+        catEl   ? catEl.textContent.toLowerCase()   : '',
+      ].join(' ');
 
       const matchFilter = currentFilter === 'all' || cat === currentFilter;
       const matchSearch = !searchQuery || combined.includes(searchQuery);
@@ -58,30 +168,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    /* Update count */
-    if (countEl) countEl.textContent = visible;
+    if (countEl)    countEl.textContent = visible;
+    if (emptyState) emptyState.classList.toggle('visible', visible === 0);
 
-    /* Empty state */
-    if (emptyState) {
-      emptyState.classList.toggle('visible', visible === 0);
-    }
-
-    /* Refresh lightbox to only include visible items */
-    if (lightbox && typeof GLightbox !== 'undefined') {
-      lightbox.destroy();
-      lightbox = GLightbox({
-        selector: '.gallery-card.glightbox:not(.hidden)',
-        touchNavigation: true,
-        loop: true,
-        closeEffect: 'fade',
-        openEffect: 'zoom',
-        skin: 'clean',
-        descPosition: 'bottom',
-      });
-    }
+    // Rebuild lightbox so only visible items are included
+    initLightbox();
   }
 
-  /* ─── Filter Tabs ───────────────────────────────────────── */
+  /* ─── Filter tabs ───────────────────────────────────────── */
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       filterTabs.forEach(t => {
@@ -97,18 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── Search ────────────────────────────────────────────── */
   if (searchInput) {
-    let searchTimer;
+    let timer;
     searchInput.addEventListener('input', () => {
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         searchQuery = searchInput.value.toLowerCase().trim();
         applyFilter();
       }, 250);
     });
   }
 
-  /* ─── View Toggle ───────────────────────────────────────── */
-  if (grid && viewBtns.length) {
+  /* ─── View toggle ───────────────────────────────────────── */
+  if (viewBtns.length) {
     viewBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         viewBtns.forEach(b => b.classList.remove('active'));
@@ -121,64 +215,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ─── Sticky Filter Bar ─────────────────────────────────── */
+  /* ─── Sticky filter bar ─────────────────────────────────── */
   if (filterBar) {
+    const navHeight = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-height') || '80'
+    );
     const observer = new IntersectionObserver(
       ([entry]) => filterBar.classList.toggle('is-stuck', !entry.isIntersecting),
-      { threshold: 1, rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height') || 80)}px 0px 0px 0px` }
+      { threshold: 1, rootMargin: `-${navHeight}px 0px 0px 0px` }
     );
     observer.observe(filterBar);
   }
 
-  /* ─── Load More (simulated) ─────────────────────────────── */
-  /* All 24 cards are already in the DOM; this hides the first
-     12 extra and reveals them on click for a realistic UX demo */
-  const allCards = grid ? Array.from(grid.querySelectorAll('.gallery-card')) : [];
-  const PAGE_SIZE = 12;
-  let shown = PAGE_SIZE;
-
-  function updateLoadMore() {
-    allCards.forEach((card, i) => {
-      if (i >= shown) {
-        card.dataset.paginated = 'hidden';
-        card.classList.add('hidden');
-      } else {
-        delete card.dataset.paginated;
-      }
-    });
-    applyFilter();
-    if (loadMoreBtn) {
-      loadMoreBtn.style.display = shown >= allCards.length ? 'none' : '';
-    }
-  }
-
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      shown = Math.min(shown + PAGE_SIZE, allCards.length);
-      allCards.slice(shown - PAGE_SIZE, shown).forEach(card => {
-        card.classList.remove('hidden');
-        delete card.dataset.paginated;
-        card.classList.add('fade-in');
-        setTimeout(() => card.classList.remove('fade-in'), 500);
-      });
-      if (shown >= allCards.length) loadMoreBtn.style.display = 'none';
-      if (countEl) countEl.textContent = grid.querySelectorAll('.gallery-card:not(.hidden)').length;
-    });
-  }
-
-  /* Initialise with all cards visible (no pagination on this demo) */
-  applyFilter();
-
   /* ─── Card hover parallax ───────────────────────────────── */
   allCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+    card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x    = (e.clientX - rect.left) / rect.width  - 0.5;
       const y    = (e.clientY - rect.top)  / rect.height - 0.5;
       const img  = card.querySelector('img');
-      if (img) {
-        img.style.transform = `scale(1.08) translate(${x * 8}px, ${y * 8}px)`;
-      }
+      if (img) img.style.transform = `scale(1.08) translate(${x * 8}px, ${y * 8}px)`;
     });
     card.addEventListener('mouseleave', () => {
       const img = card.querySelector('img');
@@ -191,18 +247,64 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.fromTo(allCards,
       { opacity: 0, y: 24 },
       {
-        opacity: 1,
-        y: 0,
+        opacity:  1,
+        y:        0,
         duration: 0.5,
-        stagger: { amount: 0.8, from: 'start' },
-        ease: 'power2.out',
+        stagger:  { amount: 0.8, from: 'start' },
+        ease:     'power2.out',
         scrollTrigger: {
           trigger: grid,
-          start: 'top 85%',
-          once: true,
+          start:   'top 85%',
+          once:    true,
         },
       }
     );
   }
 
-});
+  /* Run initial filter pass (shows all cards) */
+  applyFilter();
+}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+/**
+ * Resolve image src to the correct path.
+ * - Absolute paths (/assets/gallery/...) are used as-is.
+ * - Relative filenames (10.jpeg) are prefixed with ../ because
+ *   gallery.html lives in /pages/ and the images are at root.
+ */
+function resolveSrc(src) {
+  if (!src) return '';
+  if (src.startsWith('/') || src.startsWith('http')) return src;
+  // Strip any leading ../ the CMS may have stored, then re-add one
+  const clean = src.replace(/^(\.\.\/)+/, '');
+  return `../${clean}`;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,  '&amp;')
+    .replace(/</g,  '&lt;')
+    .replace(/>/g,  '&gt;')
+    .replace(/"/g,  '&quot;')
+    .replace(/'/g,  '&#39;');
+}
+
+function buildLoadingSkeleton() {
+  return Array.from({ length: 6 }).map((_, i) => {
+    const size = SIZE_CYCLE[i % SIZE_CYCLE.length];
+    return `<div class="gallery-card gallery-card--${size} gallery-skeleton" aria-hidden="true"></div>`;
+  }).join('');
+}
+
+function buildErrorState(msg = 'Unable to load gallery photos. Please try refreshing the page.') {
+  return `
+    <div class="gallery-empty visible" role="alert">
+      <i class="fa-solid fa-image-slash"></i>
+      <h4>Gallery Unavailable</h4>
+      <p>${escapeHtml(msg)}</p>
+    </div>
+  `;
+}
