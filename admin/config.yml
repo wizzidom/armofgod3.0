@@ -4,11 +4,15 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.majolawisdom.workers.dev
 
-# Where uploaded images are stored in the repo
 media_folder: "assets/gallery"
+public_folder: "/armofgod3.0/assets/gallery"
 
-# The public URL path to those images
-public_folder: "/assets/gallery"
+# Show a link to the live site after publishing
+show_preview_links: true
+
+# Return to the collection list after saving
+editor:
+  preview: false
 
 collections:
   - name: "gallery"
@@ -20,6 +24,9 @@ collections:
     delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{category}}"
+    # Go back to list after saving
+    editor:
+      preview: false
     fields:
       - label: "Image"
         name: "src"
