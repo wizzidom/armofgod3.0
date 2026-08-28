@@ -22,11 +22,10 @@ const CATEGORY_LABELS = {
 /* ─── Repo config ─────────────────────────────────────────── */
 const GITHUB_REPO = 'wizzidom/armofgod3.0';
 
-/* ─── Site base path on GitHub Pages ─────────────────────────
-   The site is hosted at https://wizzidom.github.io/armofgod3.0/
-   so bare image filenames like "10.jpeg" live at /armofgod3.0/10.jpeg
+/* ─── Site base path ──────────────────────────────────────────
+   Custom domain armofgod.tv serves from root — no subfolder.
    ─────────────────────────────────────────────────────────── */
-const SITE_BASE = '/armofgod3.0';
+const SITE_BASE = '';
 
 /* ============================================================
    MAIN ENTRY POINT

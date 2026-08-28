@@ -5,7 +5,7 @@ backend:
   base_url: https://sveltia-cms-auth.majolawisdom.workers.dev
 
 media_folder: "assets/gallery"
-public_folder: "/armofgod3.0/assets/gallery"
+public_folder: "/assets/gallery"
 
 # Show a link to the live site after publishing
 show_preview_links: true
