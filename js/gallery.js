@@ -293,7 +293,7 @@ function buildLoadingSkeleton() {
 function buildErrorState(msg = 'Unable to load gallery photos. Please try refreshing the page.') {
   return `<div class="gallery-empty visible" role="alert">
     <i class="fa-solid fa-image-slash"></i>
-    <h4>Gallery Unavailable</h4>
-    <p>${escapeHtml(msg)}</p>
+    <h4>No photos yet</h4>
+  
   </div>`;
 }
